@@ -17,10 +17,19 @@ import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+import SettingsIcon from "@mui/icons-material/Settings";
+import CheckIcon from "@mui/icons-material/Check";
+import Avatar from "@mui/joy/Avatar";
+import BoxJoy from "@mui/joy/Box";
+import Chip from "@mui/joy/Chip";
 import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
+import BackToTop from "./BackToTop";
+import CustomizedBreadcrumbs from "./Breadcrumbs";
 
 function Copyright(props) {
   return (
@@ -88,6 +97,15 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#1976d2",
+    },
+  },
+});
+
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -98,40 +116,54 @@ function DashboardContent() {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
-          <Toolbar
-            sx={{
-              pr: "24px", // keep right padding when drawer closed
-            }}
-          >
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer}
+        
+        <AppBar position="absolute" open={open} sx={{backgroundColor:"black"}}>
+          
+            <Toolbar
               sx={{
-                marginRight: "36px",
-                ...(open && { display: "none" }),
+                pr: "24px", // keep right padding when drawer closed
               }}
             >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              Dashboard
-            </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          </Toolbar>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={toggleDrawer}
+                sx={{
+                  marginRight: "36px",
+                  ...(open && { display: "none" }),
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                sx={{ flexGrow: 1 }}
+              >
+                Dashboard
+              </Typography>
+              <IconButton color="inherit">
+                <LogoutIcon />
+              </IconButton>
+              <IconButton color="inherit">
+                <Badge badgeContent={4} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton color="inherit">
+                <AccountCircleIcon />
+              </IconButton>
+              <IconButton color="inherit">
+                <SettingsIcon />
+              </IconButton>
+            </Toolbar>
+          
         </AppBar>
+
+        <ThemeProvider theme={darkTheme}>
         <Drawer variant="permanent" open={open}>
           <Toolbar
             sx={{
@@ -152,6 +184,7 @@ function DashboardContent() {
             {secondaryListItems}
           </List>
         </Drawer>
+        </ThemeProvider>
         <Box
           component="main"
           sx={{
@@ -164,7 +197,11 @@ function DashboardContent() {
             overflow: "auto",
           }}
         >
+            
           <Toolbar />
+
+          <CustomizedBreadcrumbs />
+
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
@@ -204,6 +241,7 @@ function DashboardContent() {
           </Container>
         </Box>
       </Box>
+      <BackToTop />
     </ThemeProvider>
   );
 }
