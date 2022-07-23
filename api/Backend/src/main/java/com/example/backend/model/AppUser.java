@@ -15,11 +15,12 @@ import static javax.persistence.FetchType.EAGER;
 public class AppUser {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String name;
     private String username;
     private String password;
     private String email;
     private String employeeId;
-    private int mobileNumber;
+    private String mobileNumber;
     @ManyToMany(fetch = EAGER)
     private Collection<UserRole> roles = new ArrayList<>();
 
