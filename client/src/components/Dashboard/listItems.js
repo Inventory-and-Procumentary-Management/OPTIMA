@@ -9,8 +9,11 @@ import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import { Link, useNavigate } from "react-router-dom";
 
 export const mainListItems = (
+  // const navigation = useNavigate();
+  // navigation("/");
   <React.Fragment>
     <ListItemButton>
       <ListItemIcon>
@@ -18,13 +21,15 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
+
     <ListItemButton>
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Orders" />
     </ListItemButton>
-    <ListItemButton>
+
+    <ListItemButton onClick={() => {}}>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>

@@ -143,7 +143,7 @@ function DashboardContent() {
                 noWrap
                 sx={{ flexGrow: 1 }}
               >
-                Dashboard
+                OPTIMA
               </Typography>
               <IconButton color="inherit">
                 <LogoutIcon />
@@ -178,11 +178,14 @@ function DashboardContent() {
             </IconButton>
           </Toolbar>
           <Divider />
+
+            {/* sidebar */}
           <List component="nav">
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
+
         </Drawer>
         </ThemeProvider>
         <Box
