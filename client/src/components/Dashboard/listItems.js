@@ -22,6 +22,13 @@ export const mainListItems = (
       <ListItemText primary="Dashboard" />
     </ListItemButton>
 
+    <ListItemButton href="/purchase">
+      <ListItemIcon>
+        <ShoppingCartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Purchase" />
+    </ListItemButton>
+
     <ListItemButton>
       <ListItemIcon>
         <ShoppingCartIcon />
@@ -55,12 +62,14 @@ export const secondaryListItems = (
     <ListSubheader component="div" inset>
       Saved reports
     </ListSubheader>
-    <ListItemButton>
+
+    <ListItemButton component="a" href="#simple-list">
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Current month" />
     </ListItemButton>
+
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
