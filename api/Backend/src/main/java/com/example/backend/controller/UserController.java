@@ -10,6 +10,7 @@ import com.example.backend.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,11 @@ import java.util.stream.Collectors;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 
+//@CrossOrigin
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value = "/api",consumes = "application/json")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
@@ -35,11 +39,21 @@ public class UserController {
     public ResponseEntity<List<AppUser>>getUsers(){
         return ResponseEntity.ok().body(userService.getUser());
     }
+    @GetMapping("/user/{id}")
+    public ResponseEntity<AppUser>getUser(@PathVariable String id){
+        try {
+            return new ResponseEntity<AppUser>(userService.getUser(id), HttpStatus.OK);
+
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<AppUser>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @PostMapping("/user/save")
     public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser){
+        //ServletUriComponentsBuilder.fromCurrentContextPath() = localhost:8080 (path eka denne)
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
-        return ResponseEntity.created(uri).body(userService.saveUser(appUser));
+        return ResponseEntity.created(uri).body(userService.saveUser(appUser)); //created(uri) means its gives 201 status
     }
 
     @PostMapping("/role/save")
@@ -51,7 +65,7 @@ public class UserController {
     @PostMapping("/role/addtouser")
     public ResponseEntity<?>addRoleToUser(@RequestBody RoleToUserForm form){
         userService.addRoleToUser(form.getUsername(),form.getRoleName());
-        return  ResponseEntity.ok().build();
+        return  ResponseEntity.ok().build(); //apita response eke body ekak yavanna one nathi nisa build() method eka athi..eken normal 200 status eke yavnava.
     }
 
     @GetMapping("/token/refresh")

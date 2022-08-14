@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //this one use for the login
         AppUser appUser = userRepo.findByUsername(username);
         if(appUser == null){
             log.error("User not found in the database");
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         log.info("Adding role {} to user {}",roleName,username);
         AppUser appUser = userRepo.findByUsername(username);
         UserRole userRole = userRoleRepository.findByName(roleName);
-        appUser.getRoles().add(userRole);
+        appUser.getRoles().add(userRole); //previously thibba roles valata aluth role eka append karanava
     }
 
     @Override

@@ -1,8 +1,14 @@
 import React from 'react'
+import DashboardItem from '../components/Dashboard/Dashboard'
+import PurchaseDashboard from './PurchasingManager/PurchaseDashboard'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
-    <div>Dashboard</div>
+    <div>
+      <PurchaseDashboard />
+      {/* meka one venne na
+      sign in eken passe kelinma user anuva dashboard ekata redirect karanava */}
+    </div>
   )
 }
 

@@ -21,7 +21,7 @@ public class AppUser {
     private String email;
     private String employeeId;
     private String mobileNumber;
-    @ManyToMany(fetch = EAGER)
+    @ManyToMany(fetch = EAGER) //user kenek load veddi okkoma roles tikath load venna kiyala
     private Collection<UserRole> roles = new ArrayList<>();
 
 }
