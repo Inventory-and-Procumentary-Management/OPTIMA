@@ -58,6 +58,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
 //        super.successfulAuthentication(request, response, chain, authentication);
+//        UserService userServiceNew = new UserService();
         User user = (User)authentication.getPrincipal();
 //        log.info(String.valueOf(user));
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
