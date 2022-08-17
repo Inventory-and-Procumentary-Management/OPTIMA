@@ -29,6 +29,7 @@ public class BackendApplication {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/login").allowedOrigins("http://localhost:3000");
                 registry.addMapping("/api/user/**").allowedOrigins("http://localhost:3000");
+                registry.addMapping("/api/product/**").allowedOrigins("http://localhost:3000");
             }
         };
     }
