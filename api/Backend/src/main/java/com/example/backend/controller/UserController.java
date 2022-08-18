@@ -62,6 +62,11 @@ public class UserController {
         return ResponseEntity.created(uri).body(userService.saveRole(userRole));
     }
 
+    @DeleteMapping("/user/delete/{id}")
+    public String userDelete(@PathVariable Long id){
+        userService.deleteUser(id);
+        return "Deleted user with id "+id;
+    }
     @PostMapping("/role/addtouser")
     public ResponseEntity<?>addRoleToUser(@RequestBody RoleToUserForm form){
         userService.addRoleToUser(form.getUsername(),form.getRoleName());
