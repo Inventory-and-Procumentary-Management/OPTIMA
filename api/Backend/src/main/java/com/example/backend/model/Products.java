@@ -27,6 +27,8 @@ public class Products {
     private Integer quantity;
     @Column(columnDefinition = "boolean default true")
     private Boolean isActivate;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean isApprove;
     private Date createDate;
     private Integer minimumLevel;
 }
