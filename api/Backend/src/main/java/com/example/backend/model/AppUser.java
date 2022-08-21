@@ -21,6 +21,7 @@ public class AppUser {
     private String email;
     private String employeeId;
     private String mobileNumber;
+//    private String img;
     @Column(columnDefinition = "boolean default true")
     private Boolean isActivate;
     @ManyToMany(fetch = EAGER) //user kenek load veddi okkoma roles tikath load venna kiyala
